@@ -5,6 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
+  // Properly handle trailing slashes for static export
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
