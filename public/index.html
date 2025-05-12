@@ -1,141 +1,89 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GS Tennis Predictor | BracketAce</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.7.1/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.7.1/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.7.1/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.7.1/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/init.js?useEmulator=false"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style media="screen">
-      body { 
-        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
-        margin: 0; 
-        padding: 0; 
-        background-color: #f9fafb;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="bg-indigo-600 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <div class="text-white font-bold text-xl">
-              BracketAce
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="bg-white rounded-lg overflow-hidden shadow-xl mb-10">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BracketAce - Tennis Grand Slam Predictions</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-indigo-600 mb-4">BracketAce</h1>
+      <p class="text-2xl text-gray-700">Predict. Win. Celebrate.</p>
+    </header>
+    
+    <main>
+      <div class="bg-white shadow-xl rounded-lg overflow-hidden border border-gray-200 mb-16">
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-16 text-white">
-          <div class="max-w-3xl">
-            <h1 class="text-4xl font-bold mb-4">
-              Predict. Win. Celebrate.
-            </h1>
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Make your predictions for Grand Slam tennis matches</h2>
             <p class="text-xl mb-6">
-              Make your predictions for Grand Slam tennis matches and compete with friends for the highest score.
+              Compete with friends for the highest score and climb the leaderboard.
             </p>
-            <a
-              href="#"
-              class="inline-block bg-white text-indigo-600 font-medium px-6 py-3 rounded-lg shadow-md hover:bg-indigo-50 transition-colors"
-            >
+            <a href="#signup" class="inline-block bg-white text-indigo-600 font-medium px-6 py-3 rounded-lg shadow-md hover:bg-indigo-50 transition-colors">
               Coming Soon
             </a>
           </div>
         </div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="md:col-span-2">
-          <h2 class="text-xl font-semibold mb-4">How it Works</h2>
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="text-center">
-                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span class="text-2xl font-bold text-indigo-600">1</span>
-                </div>
-                <h3 class="font-medium mb-2">Sign In</h3>
-                <p class="text-sm text-gray-600">Create an account or sign in with Google to start making predictions.</p>
-              </div>
-              
-              <div class="text-center">
-                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span class="text-2xl font-bold text-indigo-600">2</span>
-                </div>
-                <h3 class="font-medium mb-2">Predict Matches</h3>
-                <p class="text-sm text-gray-600">Select winners for upcoming Grand Slam matches before they begin.</p>
-              </div>
-              
-              <div class="text-center">
-                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span class="text-2xl font-bold text-indigo-600">3</span>
-                </div>
-                <h3 class="font-medium mb-2">Score Points</h3>
-                <p class="text-sm text-gray-600">Earn points for correct predictions and climb the leaderboard!</p>
-              </div>
-            </div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">How it Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-indigo-600">1</span>
           </div>
+          <h3 class="font-medium text-xl mb-2">Sign In</h3>
+          <p class="text-gray-600">Create an account or sign in with Google to start making predictions.</p>
         </div>
         
-        <div>
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4">Coming Soon</h2>
-            <p class="text-gray-600">
-              Our app is currently under development. Check back soon for the full release where you can:
-            </p>
-            <ul class="mt-4 space-y-2 text-gray-600">
-              <li class="flex items-center">
-                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Predict match outcomes
-              </li>
-              <li class="flex items-center">
-                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Compete on the leaderboard
-              </li>
-              <li class="flex items-center">
-                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                Track your prediction history
-              </li>
-            </ul>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-indigo-600">2</span>
           </div>
+          <h3 class="font-medium text-xl mb-2">Predict Matches</h3>
+          <p class="text-gray-600">Select winners for upcoming Grand Slam matches before they begin.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-indigo-600">3</span>
+          </div>
+          <h3 class="font-medium text-xl mb-2">Score Points</h3>
+          <p class="text-gray-600">Earn points for correct predictions and climb the leaderboard!</p>
         </div>
       </div>
-    </div>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <p>© 2024 BracketAce. All rights reserved.</p>
-        </div>
+      <div class="bg-white shadow-lg rounded-lg p-8 text-center mb-16">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Coming Soon</h2>
+        <p class="text-gray-600 mb-6">Our app is currently under development. Check back soon for the full release where you can:</p>
+        <ul class="text-left max-w-md mx-auto mb-6 space-y-2">
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Predict match outcomes
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Compete on the leaderboard
+          </li>
+          <li class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            Track your prediction history
+          </li>
+        </ul>
       </div>
+    </main>
+    
+    <footer class="text-center text-gray-600 text-sm">
+      <p>© 2024 BracketAce. All rights reserved.</p>
     </footer>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        try {
-          let app = firebase.app();
-          firebase.analytics();
-        } catch (e) {
-          console.error(e);
-        }
-      });
-    </script>
-  </body>
+  </div>
+</body>
 </html>
