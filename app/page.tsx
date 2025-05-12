@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import TournamentCard from './components/TournamentCard';
 import Leaderboard from './components/Leaderboard';
+import { GrandSlam } from './types';
 
 // Server component to fetch active tournament
 async function ActiveTournament() {
@@ -10,7 +11,7 @@ async function ActiveTournament() {
   // For demo purposes, we're returning mock data
   const activeTournament = {
     id: 'wimbledon-2023',
-    name: 'Wimbledon',
+    name: GrandSlam.WIMBLEDON,
     startDate: '2023-07-03',
     endDate: '2023-07-16',
     isActive: true,

@@ -9,7 +9,7 @@ import {
   query,
   where,
   orderBy,
-  limit,
+  limit as firestoreLimit,
   Timestamp,
   serverTimestamp
 } from 'firebase/firestore';
@@ -24,20 +24,20 @@ export async function getAllTournaments() {
   
   return snapshot.docs.map((doc) => ({
     id: doc.id,
-    ...doc.data()
+    ...doc.data() as Record<string, any>
   })) as Tournament[];
 }
 
 export async function getActiveTournament() {
   const tournamentsRef = collection(db, 'tournaments');
-  const q = query(tournamentsRef, where('isActive', '==', true), limit(1));
+  const q = query(tournamentsRef, where('isActive', '==', true), firestoreLimit(1));
   const snapshot = await getDocs(q);
   
   if (snapshot.empty) return null;
   
   return {
     id: snapshot.docs[0].id,
-    ...snapshot.docs[0].data()
+    ...snapshot.docs[0].data() as Record<string, any>
   } as Tournament;
 }
 
@@ -49,7 +49,7 @@ export async function getTournamentById(tournamentId: string) {
   
   return {
     id: docSnap.id,
-    ...docSnap.data()
+    ...docSnap.data() as Record<string, any>
   } as Tournament;
 }
 
@@ -61,7 +61,7 @@ export async function getMatchesByTournament(tournamentId: string) {
   
   return snapshot.docs.map((doc) => ({
     id: doc.id,
-    ...doc.data()
+    ...doc.data() as Record<string, any>
   })) as Match[];
 }
 
@@ -73,7 +73,7 @@ export async function getMatch(matchId: string) {
   
   return {
     id: docSnap.id,
-    ...docSnap.data()
+    ...docSnap.data() as Record<string, any>
   } as Match;
 }
 
@@ -115,18 +115,18 @@ export async function getUserPredictions(userId: string, tournamentId?: string) 
   
   return snapshot.docs.map((doc) => ({
     id: doc.id,
-    ...doc.data()
+    ...doc.data() as Record<string, any>
   })) as Prediction[];
 }
 
 // Leaderboard
-export async function getLeaderboard(tournamentId?: string, limit = 20) {
+export async function getLeaderboard(tournamentId?: string, limitCount = 20) {
   const usersRef = collection(db, 'users');
-  const q = query(usersRef, orderBy('points', 'desc'), limit(limit));
+  const q = query(usersRef, orderBy('points', 'desc'), firestoreLimit(limitCount));
   const snapshot = await getDocs(q);
   
   const leaderboard = snapshot.docs.map((doc) => {
-    const data = doc.data();
+    const data = doc.data() as Record<string, any>;
     return {
       userId: doc.id,
       displayName: data.displayName,

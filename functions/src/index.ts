@@ -4,16 +4,22 @@ import * as admin from 'firebase-admin';
 admin.initializeApp();
 const db = admin.firestore();
 
+interface Match {
+  completed: boolean;
+  winner?: string;
+  round: string;
+  // Add other fields as needed
+}
+
 /**
  * Calculate points for predictions when a match is completed
  * This function is triggered when a match document is updated
  */
 export const calculatePredictionPoints = functions.firestore
-  .document('matches/{matchId}')
-  .onUpdate(async (change, context) => {
-    const matchId = context.params.matchId;
-    const matchBefore = change.before.data();
-    const matchAfter = change.after.data();
+  .onDocumentUpdated('matches/{matchId}', async (event) => {
+    const matchId = event.params.matchId;
+    const matchBefore = event.data.before.data() as Match;
+    const matchAfter = event.data.after.data() as Match;
 
     // Only process if match has just been completed (wasn't completed before, is completed now)
     if (!matchBefore.completed && matchAfter.completed && matchAfter.winner) {
@@ -86,7 +92,7 @@ export const calculatePredictionPoints = functions.firestore
 /**
  * Calculate points to award based on the round of the match
  */
-function calculatePoints(match: any): number {
+function calculatePoints(match: Match): number {
   // Points increase as tournament progresses
   switch (match.round) {
     case 'First Round':

@@ -4,9 +4,7 @@ A tennis match prediction application that uses statistical models to forecast o
 
 ## Features (Planned)
 - Match outcome predictions
-- Player performance analytics
 - Tournament forecasting
-- Statistical models for tennis predictions
 
 ## Technology Stack
 - [Placeholder for technology stack]
