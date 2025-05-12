@@ -42,4 +42,17 @@ ENV/
 .env.local
 .env.development.local
 .env.test.local
-.env.production.local 
+.env.production.local
+
+# Next.js
+.next/
+out/
+
+# Firebase
+.firebase/
+firebase-debug.log
+ui-debug.log
+emulator-data/
+
+# Local Netlify folder
+.netlify 
