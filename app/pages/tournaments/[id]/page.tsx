@@ -6,6 +6,16 @@ import dayjs from 'dayjs';
 import MatchCard from '../../../components/MatchCard';
 import { GrandSlam, Round } from '../../../types';
 
+// Generate static params for all tournaments at build time
+export function generateStaticParams() {
+  // In a real app, this would fetch all tournament IDs from your database
+  // For now, we'll hardcode the IDs we know about
+  return [
+    { id: 'wimbledon-2023' },
+    // Add other tournament IDs here
+  ];
+}
+
 // Simulating server-side data fetching
 async function getTournament(id: string) {
   // In a real app, this would fetch from your Firestore database
